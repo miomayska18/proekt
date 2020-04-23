@@ -15,13 +15,50 @@ struct TOY {
 
 //functional stuff????
 
+void createToy(TOY* toys, int& toyCount, int& maxId, TOY newToy) {
+	newToy.id = maxId++;
+	toys[toyCount] = newToy;
+	toyCount++;
+}
 
+TOY getToy(TOY* toys, int& toyCount, int& toyId) {
+	for (int i = 0; i < toyCount; i++)
+	{
+		if (toys->id == toyId)
+		{
+			return toys[i];
+		}
+	}
+}
 
+int getToyIndexById(TOY* toys, int& toyCount, int id) {
+	for (int i = 0; i < toyCount; i++)
+	{
+		if (toys[i].id == id) {
+			return id;
+		}
+	}
+}
+
+void updateToy(TOY* toys, int toyCount, int id, TOY newToy) {
+	int index = getToyIndexById(toys, toyCount, id);
+	toys[index] = newToy;
+}
+
+void deleteToy(TOY* toys, int& toyCount, int id) {
+	int index = getToyIndexById(toys, toyCount, id);
+
+	for (int i = index; i < toyCount - 1; i++)
+	{
+		toys[i] = toys[i + 1];
+	}
+	toyCount--;
+}
 
 //presentation layer?????
 
 void showToysMenu(TOY* toys, int& toyCount, int& maxId) {
-	cout << "List of all the toys in the store! " << endl;
+	cout << "\nList of all the toys in the store! " << endl;
 	for (int i = 0; i < toyCount; i++)
 	{
 		cout << toys[i].toyName << ": " << toys[i].id << ", (" << toys[i].startAge << "-" << toys[i].endAge << ") years" << endl;
@@ -50,7 +87,7 @@ void createToyMenu(TOY* toys, int& toyCount, int& maxId) {
 	cout << "Enter target gender: girls/boys/both" << endl;
 	cin >> toy.genderForToy;
 
-	//createToy(toys, toyCount, maxId, toy);
+	createToy(toys, toyCount, maxId, toy);
 }
 
 void editToyMenu(TOY* toys, int& toyCount) {
@@ -58,7 +95,7 @@ void editToyMenu(TOY* toys, int& toyCount) {
 	cout << "Enter toy id: ";
 	cin >> toyId;
 
-	//TOY toy = getToy(toys, toyCount, toyId);
+	TOY toy = getToy(toys, toyCount, toyId);
 
 	cout << "1. Toy Name" << endl;
 	cout << "2. Price" << endl;
@@ -75,33 +112,33 @@ void editToyMenu(TOY* toys, int& toyCount) {
 	{
 	case 1:
 		cout << "1. Toy Name: ";
-		//cin >> toy.toyName;
-		//updateOrder(toys, toyCount, toyId, toy);
+		cin >> toy.toyName;
+		updateToy(toys, toyCount, toyId, toy);
 		break;
 	case 2:
 		cout << "2. Price: ";
-		//cin >> toy.toyName;
-		//updateOrder(toys, toyCount, toyId, toy);
+		cin >> toy.toyName;
+		updateToy(toys, toyCount, toyId, toy);
 		break;
 	case 3:
 		cout << "3. Id: ";
-		//cin >> toy.toyName;
-		//updateOrder(toys, toyCount, toyId, toy);
+		cin >> toy.toyName;
+		updateToy(toys, toyCount, toyId, toy);
 		break;
 	case 4:
 		cout << "4. Start of age range: ";
-		//cin >> toy.toyName;
-		//updateOrder(toys, toyCount, toyId, toy);
+		cin >> toy.toyName;
+		updateToy(toys, toyCount, toyId, toy);
 		break;
 	case 5:
 		cout << "5. End of age range: ";
-		//cin >> toy.toyName;
-		//updateOrder(toys, toyCount, toyId, toy);
+		cin >> toy.toyName;
+		updateToy(toys, toyCount, toyId, toy);
 		break;
 	case 6:
 		cout << "6. Target gender (for girls/boys/both): ";
-		//cin >> toy.toyName;
-		//updateOrder(toys, toyCount, toyId, toy);
+		cin >> toy.toyName;
+		updateToy(toys, toyCount, toyId, toy);
 		break;
 	default:
 		cout << "Invalid field!" << endl;
@@ -115,7 +152,7 @@ void deleteToyMenu(TOY* toys, int& toyCount, int& maxId) {
 	cout << "Enter toy Id: ";
 	cin >> toyId;
 
-	//deleteToy(toys, toyCount, toyId);
+	deleteToy(toys, toyCount, toyId);
 }
 
 //void showReportsMenu(/*stuff*/) {
@@ -130,7 +167,7 @@ bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
 	cout << "2. Add Toys" << endl;
 	cout << "3. Edit toy data" << endl;
 	cout << "4. Delete Toys" << endl;
-	cout << "5. Reports" << endl;
+	//cout << "5. Reports" << endl;
 	cout << "9. Exit." << endl;
 	cout << "Enter the option, which you want to use: ";
 
@@ -150,9 +187,9 @@ bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
 	case 4:
 		deleteToyMenu(toys, toyCount, maxId);
 		break;
-	case 5:
-		;
-		break;
+		//case 5:
+		//	;
+		//	break;
 	case 9:
 		return false;
 	}
