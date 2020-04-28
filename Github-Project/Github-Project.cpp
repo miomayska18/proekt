@@ -163,8 +163,8 @@ bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
 {
 	int option;
 	cout << "\nChoose an option from the menu below:" << endl;
-	cout << "1. Show Toys" << endl;
-	cout << "2. Add Toys" << endl;
+	cout << "1. Add Toys" << endl;
+	cout << "2. Show Toys" << endl;
 	cout << "3. Edit toy data" << endl;
 	cout << "4. Delete Toys" << endl;
 	//cout << "5. Reports" << endl;
@@ -176,10 +176,10 @@ bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
 	switch (option)
 	{
 	case 1:
-		showToysMenu(toys, toyCount, maxId);
+		createToyMenu(toys, toyCount, maxId);
 		break;
 	case 2:
-		createToyMenu(toys, toyCount, maxId);
+		showToysMenu(toys, toyCount, maxId);
 		break;
 	case 3:
 		editToyMenu(toys, toyCount);
