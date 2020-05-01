@@ -1,227 +1,113 @@
-﻿// Github-Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// ConsoleApplication6.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
 
-#include <iostream>
+#include<iostream>
+#include<string>
+#include<iomanip>
 using namespace std;
-
-struct TOY {
-	string toyName;
-	float price;
-	int id;
-	int startAge; //start and end age are for the age range for a toy
-	int endAge; //example: (0-3) years
-	string genderForToy;
+int n, studentsCount, k;
+struct Student
+{
+	string firstName;
+	string secondName;
+	string lastName;
+	char EGN[11];
+	int BEL;
+	int MAT;
+	int ENG;
+	int CHEMISTRY;
+	int BIOLOGY;
+	int PHYSICS;
+	float a;
 };
 
-//functional stuff????
-
-void createToy(TOY* toys, int& toyCount, int& maxId, TOY newToy) {
-	newToy.id = maxId++;
-	toys[toyCount] = newToy;
-	toyCount++;
-}
-
-TOY getToy(TOY* toys, int& toyCount, int& toyId) {
-	for (int i = 0; i < toyCount; i++)
-	{
-		if (toys[i].id == toyId)
-		{
-			return toys[i];
-		}
-	}
-}
-
-int getToyIndexById(TOY* toys, int& toyCount, int id) {
-	for (int i = 0; i < toyCount; i++)
-	{
-		if (toys[i].id == id) {
-			return i;
-		}
-	}
-	return -1;
-}
-
-void updateToy(TOY* toys, int toyCount, int id, TOY newToy) {
-	int index = getToyIndexById(toys, toyCount, id);
-	toys[index] = newToy;
-}
-
-void deleteToy(TOY* toys, int& toyCount, int id) {
-	int index = getToyIndexById(toys, toyCount, id);
-
-	for (int i = index; i < toyCount - 1; i++)
-	{
-		toys[i] = toys[i + 1];
-	}
-	toyCount--;
-}
-
-//presentation layer?????
-
-void showToysMenu(TOY* toys, int& toyCount, int& maxId) {
-	cout << "\nList of all the toys in the store! " << endl << endl;
-	cout << "====================" << endl;
-	for (int i = 0; i < toyCount; i++)
-	{
-		cout << toys[i].toyName << ": " << toys[i].id << ", (" << toys[i].startAge << "-" << toys[i].endAge << ") years, for " << toys[i].genderForToy << endl;
-	}
-	cout << "====================" << endl << endl;
-}
-
-void createToyMenu(TOY* toys, int& toyCount, int& maxId) {
-	TOY toy;
-	cout << "====================================" << endl;
-
-	cout << "Enter toy name: ";
-	cin >> toy.toyName;
-
-	cout << "Enter toy price: ";
-	cin >> toy.price;
-
-	cout << "Enter toy id: ";
-	cin >> toy.id;
-
-	cout << "Enter toy age range: " << endl;
-
-	cout << "From: ";
-	cin >> toy.startAge;
-
-	cout << "To: ";
-	cin >> toy.endAge;
-
-
-	cout << "Enter target gender: girls/boys/both" << endl;
-	cin >> toy.genderForToy;
-
-	cout << "====================================" << endl << endl;
-
-	createToy(toys, toyCount, maxId, toy);
-}
-
-void editToyMenu(TOY* toys, int& toyCount) {
-	int toyId;
-	cout << "====================================" << endl;
-	cout << "Enter toy id: ";
-	cin >> toyId;
-
-	TOY toy = getToy(toys, toyCount, toyId);
-
-	cout << "1. Toy Name" << endl;
-	cout << "2. Price" << endl;
-	cout << "3. Id" << endl;
-	cout << "4. Start of age range" << endl;
-	cout << "5. End of age range" << endl;
-	cout << "6. Target gender (for girls/boys/both)" << endl;
-	cout << "====================================" << endl << endl;
-	cout << "Which field do you want to edit: " << endl;
-
-	int field;
-	cin >> field;
-
-	switch (field)
-	{
-	case 1:
-		cout << "1. Toy Name: ";
-		cin >> toy.toyName;
-		updateToy(toys, toyCount, toyId, toy);
-		break;
-	case 2:
-		cout << "2. Price: ";
-		cin >> toy.toyName;
-		updateToy(toys, toyCount, toyId, toy);
-		break;
-	case 3:
-		cout << "3. Id: ";
-		cin >> toy.toyName;
-		updateToy(toys, toyCount, toyId, toy);
-		break;
-	case 4:
-		cout << "4. Start of age range: ";
-		cin >> toy.toyName;
-		updateToy(toys, toyCount, toyId, toy);
-		break;
-	case 5:
-		cout << "5. End of age range: ";
-		cin >> toy.toyName;
-		updateToy(toys, toyCount, toyId, toy);
-		break;
-	case 6:
-		cout << "6. Target gender (for girls/boys/both): ";
-		cin >> toy.toyName;
-		updateToy(toys, toyCount, toyId, toy);
-		break;
-	default:
-		cout << "Invalid field!" << endl;
-		break;
-	}
-}
-
-void deleteToyMenu(TOY* toys, int& toyCount) {
-	int toyId;
-
-	cout << "Enter toy Id: ";
-	cin >> toyId;
-
-	deleteToy(toys, toyCount, toyId);
-}
-
-//void showReportsMenu(/*stuff*/) {
-//
-//}
-
-bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
-
+void read_student(Student& students)
 {
-	int option;
-	cout << "==============================================" << endl;
-	cout << ".: WELCOME TO THE TOY STORE MANAGEMNET MENU:." << endl;
-	cout << "\nChoose an option from the menu below:" << endl;
-	cout << "1. Add Toys" << endl;
-	cout << "2. Show Toys" << endl;
-	cout << "3. Edit toy data" << endl;
-	cout << "4. Delete Toys" << endl;
-	//cout << "5. Reports" << endl;
-	cout << "6. Exit." << endl;
-	cout << "==============================================" << endl << endl;
-	cout << "Enter the option, which you want to use: ";
+	cout << "First name:  ";
+	cin >> students.firstName;
+	cout << "Second name:  ";
+	cin >> students.secondName;
+	cout << "Last name:  ";
+	cin >> students.lastName;
+	cout << "EGN: ";
+	cin >> students.EGN;
+	cout << "BEL: ";
+	cin >> students.BEL;
+	cout << "MAT: ";
+	cin >> students.MAT;
+	cout << "ENG: ";
+	cin >> students.ENG;
+	cout << "CHEMISTRY: ";
+	cin >> students.CHEMISTRY;
+	cout << "BIOLOGY: ";
+	cin >> students.BIOLOGY;
+	cout << "PHYSICS: ";
+	cin >> students.PHYSICS;
+}
 
-	cin >> option;
 
-	switch (option)
-	{
-	case 1:
-		createToyMenu(toys, toyCount, maxId);
-		break;
-	case 2:
-		showToysMenu(toys, toyCount, maxId);
-		break;
-	case 3:
-		editToyMenu(toys, toyCount);
-		break;
-	case 4:
-		deleteToyMenu(toys, toyCount);
-		break;
-	//case 5:
-	//	;
-	//	break;
-	case 6:
-		cout << "Goodbye!";
-		return false;
-	}
-	return true;
+void insertDate(Student* students)  //, int &studentsCount)
+{
+	int i;
+
+	for (i = 0; i < n; i++)
+		read_student(students[i]);
+
+	//studentsCount++;
+}
+
+void print_student(Student& student)
+{
+	cout << setw(10) << student.firstName << " ";
+	cout << setw(15) << student.secondName << " ";
+	cout << setw(15) << student.lastName << " ";
+	cout << setw(14) << student.EGN << " ";
+	cout << setw(5) << student.BEL << " ";
+	cout << setw(6) << student.MAT << " ";
+	cout << setw(6) << student.ENG << " ";
+	cout << setw(10) << student.CHEMISTRY << " ";
+	cout << setw(10) << student.BIOLOGY << " ";
+	cout << setw(8) << student.PHYSICS << endl;
+	//cout<<students[i].a;
+}
+
+void output(Student* students)
+{
+	int i;
+	cout << setw(12) << "first name";
+	cout << setw(15) << "secondName";
+	cout << setw(15) << "lastName";
+	cout << setw(12) << "EGN";
+	cout << setw(10) << "BEL";
+	cout << setw(7) << "MAT";
+	cout << setw(7) << "ENG";
+	cout << setw(12) << "CHEMISTRY";
+	cout << setw(12) << "BIOLOGY";
+	cout << setw(10) << "PHYSICS" << endl;
+	for (i = 0; i < n; i++)
+		print_student(students[i]);
 }
 
 int main()
 {
-	int toyCount = 0;
-	int maxId = 0;
+	Student students[100];
 
-	TOY toys[100];
 
-	bool doShowMenu;
+	cout << "Number of students: ";
+	cin >> n;
+	insertDate(students);
+	output(students);
 
-	do {
-		doShowMenu = showMainMenu(toys, toyCount, maxId);
-	} while (doShowMenu);
+	for (int i = 0; i < n; i++)
+	{
+		float s;
+		s = 1.0 * (students[i].BEL + students[i].MAT + students[i].ENG + students[i].CHEMISTRY + students[i].BIOLOGY + students[i].PHYSICS) / 6;
+		students[i].a = s;
+	}
+
+
+
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
