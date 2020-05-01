@@ -155,7 +155,7 @@ void editToyMenu(TOY* toys, int& toyCount) {
 	}
 }
 
-void deleteToyMenu(TOY* toys, int& toyCount, int& maxId) {
+void deleteToyMenu(TOY* toys, int& toyCount) {
 	int toyId;
 
 	cout << "Enter toy Id: ";
@@ -169,6 +169,7 @@ void deleteToyMenu(TOY* toys, int& toyCount, int& maxId) {
 //}
 
 bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
+
 {
 	int option;
 	cout << "==============================================" << endl;
@@ -197,7 +198,7 @@ bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
 		editToyMenu(toys, toyCount);
 		break;
 	case 4:
-		deleteToyMenu(toys, toyCount, maxId);
+		deleteToyMenu(toys, toyCount);
 		break;
 	//case 5:
 	//	;
