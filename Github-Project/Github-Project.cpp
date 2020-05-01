@@ -1,4 +1,4 @@
-// Github-Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Github-Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
 #include <iostream>
 using namespace std;
@@ -58,15 +58,19 @@ void deleteToy(TOY* toys, int& toyCount, int id) {
 //presentation layer?????
 
 void showToysMenu(TOY* toys, int& toyCount, int& maxId) {
-	cout << "\nList of all the toys in the store! " << endl;
+	cout << "\nList of all the toys in the store! " << endl << endl;
+	cout << "====================" << endl;
 	for (int i = 0; i < toyCount; i++)
 	{
-		cout << toys[i].toyName << ": " << toys[i].id << ", (" << toys[i].startAge << "-" << toys[i].endAge << ") years" << endl;
+		cout << toys[i].toyName << ": " << toys[i].id << ", (" << toys[i].startAge << "-" << toys[i].endAge << ") years, for " << toys[i].genderForToy << endl;
 	}
+	cout << "====================" << endl << endl;
 }
 
 void createToyMenu(TOY* toys, int& toyCount, int& maxId) {
 	TOY toy;
+	cout << "====================================" << endl;
+
 	cout << "Enter toy name: ";
 	cin >> toy.toyName;
 
@@ -77,21 +81,25 @@ void createToyMenu(TOY* toys, int& toyCount, int& maxId) {
 	cin >> toy.id;
 
 	cout << "Enter toy age range: " << endl;
+
 	cout << "From: ";
 	cin >> toy.startAge;
-	cout << " years" << endl;
+
 	cout << "To: ";
 	cin >> toy.endAge;
-	cout << " years" << endl;
+
 
 	cout << "Enter target gender: girls/boys/both" << endl;
 	cin >> toy.genderForToy;
+
+	cout << "====================================" << endl << endl;
 
 	createToy(toys, toyCount, maxId, toy);
 }
 
 void editToyMenu(TOY* toys, int& toyCount) {
 	int toyId;
+	cout << "====================================" << endl;
 	cout << "Enter toy id: ";
 	cin >> toyId;
 
@@ -103,6 +111,7 @@ void editToyMenu(TOY* toys, int& toyCount) {
 	cout << "4. Start of age range" << endl;
 	cout << "5. End of age range" << endl;
 	cout << "6. Target gender (for girls/boys/both)" << endl;
+	cout << "====================================" << endl << endl;
 	cout << "Which field do you want to edit: " << endl;
 
 	int field;
@@ -162,13 +171,16 @@ void deleteToyMenu(TOY* toys, int& toyCount, int& maxId) {
 bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
 {
 	int option;
+	cout << "==============================================" << endl;
+	cout << ".: WELCOME TO THE TOY STORE MANAGEMNET MENU:." << endl;
 	cout << "\nChoose an option from the menu below:" << endl;
 	cout << "1. Add Toys" << endl;
 	cout << "2. Show Toys" << endl;
 	cout << "3. Edit toy data" << endl;
 	cout << "4. Delete Toys" << endl;
 	//cout << "5. Reports" << endl;
-	cout << "9. Exit." << endl;
+	cout << "6. Exit." << endl;
+	cout << "==============================================" << endl << endl;
 	cout << "Enter the option, which you want to use: ";
 
 	cin >> option;
@@ -190,7 +202,8 @@ bool showMainMenu(TOY* toys, int& toyCount, int& maxId)
 	//case 5:
 	//	;
 	//	break;
-	case 9:
+	case 6:
+		cout << "Goodbye!";
 		return false;
 	}
 	return true;
