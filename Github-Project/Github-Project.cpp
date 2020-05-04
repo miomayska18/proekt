@@ -60,12 +60,19 @@ void beginProgram()
 		j = displayMenu();
 		switch (j)
 		{
-		case 1:insertDate(students); break;
-		case 2:output(students); break;
-		case 3:sortStudents(n, students); output(students); break;
-		case 4:output_success(students); break;
-		case 5:output_success_best(students); break;
-		case 100: cout << "\n END"; break;
+		case 1:insertDate(students); 
+			break;
+		case 2:output(students); 
+			break;
+		case 3:sortStudents(n, students); 
+			output(students); 
+			break;
+		case 4:output_success(students); 
+			break;
+		case 5:output_success_best(students); 
+			break;
+		case 100: cout << "\n END"; 
+			break;
 		}
 	} while (j != 100);
 }
@@ -94,6 +101,7 @@ void insertDate(Student* students)  //, int &studentsCount)
 	for (i = 0; i < n; i++)
 		read_student(students[i]);
 }
+
 void print_student(Student& student)
 {
 	cout << setw(10) << student.firstName << " ";
@@ -105,6 +113,7 @@ void print_student(Student& student)
 		cout << setw(6) << student.marks[i];
 	}
 }
+
 void print_student_success(Student& student)
 {
 	cout << setw(10) << student.firstName << " ";
@@ -135,6 +144,7 @@ void output(Student* students)
 	}
 	cout << endl;
 }
+
 void output_success(Student* students)
 {
 	int i;
@@ -150,6 +160,7 @@ void output_success(Student* students)
 	}
 	cout << endl;
 }
+
 void output_success_best(Student* students)
 {
 	int i;
@@ -168,6 +179,7 @@ void output_success_best(Student* students)
 	}
 	cout << endl;
 }
+
 double average(double* a)
 {
 	double s = 0;
@@ -175,7 +187,6 @@ double average(double* a)
 		s += a[j];
 	return s / NUM;
 }
-
 
 void sortStudents(int n, Student a[])
 {
